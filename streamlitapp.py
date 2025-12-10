@@ -1,16 +1,31 @@
 import streamlit as st
 
-st.set_page_config(page_title="contraceptive.ai", page_icon="purple_heart", layout="centered")
+st.set_page_config(page_title="contraceptive.ai", page_icon=":purple_heart:", layout="centered")
 
 st.markdown("""
 <style>
-    .main {background: linear-gradient(135deg, #f3e8ff, #e0d4ff);}
-    h1 {color: #7c3aed !important;}
-    .stButton>button {background: #a78bfa; border-radius: 25px; color: white; height: 3em;}
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #f3e8ff, #e0d4ff);
+        padding-top: 1rem;
+    }
+    h1 {
+        color: #7c3aed !important;
+        font-family: 'Segoe UI', sans-serif !important;
+    }
+    .stButton > button {
+        background: #a78bfa !important;
+        border-radius: 25px !important;
+        color: white !important;
+        height: 3em !important;
+        font-weight: bold !important;
+    }
+    .stMarkdown {
+        text-align: center;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("purple_heart contraceptive.ai")
+st.title(":purple_heart: contraceptive.ai")
 st.markdown("#### *Your body. Your choices. Your perfect pill.*")
 
 class Engine:
@@ -43,7 +58,7 @@ if progress < len(questions):
     q = questions[progress]
     st.write(f"**{progress+1}/{len(questions)}** — {q['q']}")
     ans = st.multiselect("Select all that apply", q["opts"], key=q["id"]) if q["type"]=="multi" else st.radio("Choose one", q["opts"], key=q["id"])
-    if st.button("Next purple_heart", type="primary", use_container_width=True):
+    if st.button("Next :purple_heart:", type="primary", use_container_width=True):
         st.rerun()
 else:
     for q in questions: engine.answers[q["id"]] = st.session_state[q["id"]]
@@ -62,4 +77,4 @@ else:
         for k in list(st.session_state.keys()): del st.session_state[k]
         st.rerun()
 
-st.caption("contraceptive.ai • Built with purple_heart for women everywhere • Not medical advice • MIT License")
+st.caption("contraceptive.ai • Built with :purple_heart: for women everywhere • Not medical advice • MIT License")
